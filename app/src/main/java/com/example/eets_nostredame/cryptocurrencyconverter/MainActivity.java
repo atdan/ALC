@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     private String coinID;
 
 
+    private ListActivity listActivity;
     private String currencyRequetUrl;
     private TextView mEmptyTextView;
     private static final int CURRENCY_LOADER_ID = 1;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         ListView currencyListView = (ListView) findViewById(R.id.list);
         mEmptyTextView = (TextView) findViewById(R.id.empty_text);
+        listActivity = new ListActivity();
 
         currencyRequetUrl = "https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD,EUR,NGN,MXN,COP,JPY,ILS,GBP,CNY,BRL,CAD,ZAR,RUB,EGP,INR,TRY,SEK,MTL,ARS,KHR";
 

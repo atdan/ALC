@@ -10,6 +10,7 @@
     tools:context="com.example.eets_nostredame.cryptocurrencyconverter.ListActivity">
 
     <Spinner
+        android:entries="@array/currency_code"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:id="@+id/list_item_spinner"
@@ -24,7 +25,7 @@
         android:textColor="@android:color/black"
         android:padding="8dp"
         android:textSize="20sp"
-        android:fontFamily="sans-serif"
+        android:textStyle="bold"
         android:text="@string/list_of_currencies_selected"/>
     <ListView
         android:layout_width="match_parent"
