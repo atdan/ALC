@@ -17,6 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -66,11 +69,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
 
@@ -87,11 +85,15 @@ public class MainActivity extends AppCompatActivity
                 double btcRate = Double.parseDouble(currentCurrency.getBtcRate());
                 double ethRate = Double.parseDouble(currentCurrency.getEthRate());
                 String getCurrencyID = currentCurrency.getCurrencyID();
+                String getCurrencyName = currentCurrency.getCurrencyName();
+
 
                 Intent convertIntent = new Intent(view.getContext(), ConvertActivity.class);
                 convertIntent.putExtra("btcRate", btcRate);
                 convertIntent.putExtra("ethRate", ethRate);
-                convertIntent.putExtra("currencyID", getCurrencyID);
+                convertIntent.putExtra("key",getCurrencyID);
+                convertIntent.putExtra("key2",getCurrencyName);
+
                 startActivity(convertIntent);
 
             }
@@ -132,5 +134,40 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<List<MyCurrency>> loader) {
         mCurrencyAdapter.clear();
+    }
+
+
+    @Override
+    public void onRestart(){
+        super.onRestart();
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                onRestart();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void add(View view) {
+        Intent startPreferenceActivity = new Intent(MainActivity.this, ListActivity.class);
+        startActivity(startPreferenceActivity);
+
+
     }
 }

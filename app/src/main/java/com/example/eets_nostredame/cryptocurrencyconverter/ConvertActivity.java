@@ -1,5 +1,6 @@
 package com.example.eets_nostredame.cryptocurrencyconverter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -29,6 +30,8 @@ public class ConvertActivity extends AppCompatActivity {
     TextView currencyID;
     TextView currencyIDD;
     String getCurrencyID;
+    String getCurrencyName;
+    TextView CurrencyName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +41,19 @@ public class ConvertActivity extends AppCompatActivity {
 
         btcView = findViewById(R.id.btc_view_id);
         ethView = findViewById(R.id.eth_view_id);
+        CurrencyName = findViewById(R.id.currency_name);
+
+
 
         if (getIntent().getExtras() != null) {
             Bundle bundle = getIntent().getExtras();
-            getCurrencyID = (String) bundle.get("getCurrencyID");
+            getCurrencyName = bundle.getString("key2");
+            getCurrencyID = bundle.getString("key");
             btcRate = bundle.getDouble("btcRate", 0.0);
             ethRate = bundle.getDouble("ethRate", 0.0);
 
         }
+
 
 
         BTCconvertAmountEdit = findViewById(R.id.btc_edit_textview);
@@ -56,11 +64,15 @@ public class ConvertActivity extends AppCompatActivity {
         currencyID.setText(getCurrencyID);
         currencyIDD = findViewById(R.id.currency_idd);
         currencyIDD.setText(getCurrencyID);
+        CurrencyName.setText(getCurrencyName);
 
 
         BTCconvertAmountEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                currencyID.setText(getCurrencyID);
+
 
 
             }
@@ -68,6 +80,10 @@ public class ConvertActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 BTCconvertedTextView.setText("");
+                currencyID.setText(getCurrencyID);
+
+
+
                 try {
                     double convertAmount = Double.parseDouble(BTCconvertAmountEdit.getText().toString());
                     BTCtotalAmount = convertAmount / btcRate;
@@ -83,6 +99,8 @@ public class ConvertActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                currencyID.setText(getCurrencyID);
+
             }
         });
 
@@ -93,12 +111,17 @@ public class ConvertActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                currencyID.setText(getCurrencyID);
+
+
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 ETHconvertedTextView.setText("");
+                currencyID.setText(getCurrencyID);
+
                 try {
                     double convertAmount = Double.parseDouble(BTCconvertAmountEdit.getText().toString());
                     ETHtotalAmount = convertAmount / ethRate;
@@ -113,20 +136,13 @@ public class ConvertActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                currencyID.setText(getCurrencyID);
+
+
 
             }
         });
 
-//        ethConvertButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ETHconvertedTextView.setText("");
-//                double convertAmount = Double.parseDouble(BTCconvertAmountEdit.getText().toString());
-//                ETHtotalAmount = convertAmount / ethRate;
-//                //String final_text_ETH = ETHtotalAmount + " ETH";
-//                ETHconvertedTextView.setText(""+ ETHtotalAmount + " ETH");
-//                Log.i("amount:: ", "" + BTCtotalAmount);
-//            }
-//        });
+
     }
 }

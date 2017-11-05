@@ -31,7 +31,7 @@ public class CurrencyAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View listItemView = convertView;
+        View listItemView;
 
             if (convertView == null){
                 listItemView = LayoutInflater
@@ -39,30 +39,30 @@ public class CurrencyAdapter extends ArrayAdapter {
                         .inflate(R.layout.card_item, parent,false);
 
 
-
-                TextView currencyNameTextView = (TextView) listItemView.findViewById(R.id.currency_name);
-                TextView currencyIDTextView = (TextView) listItemView.findViewById(R.id.currency_id);
-                TextView currencyBTCTextView = (TextView) listItemView.findViewById(R.id.btc_rate);
-                TextView currencyETHTextView = (TextView) listItemView.findViewById(R.id.eth_rate);
-
-                final MyCurrency currentCurrency = (MyCurrency) getItem(position);
-
-                String currencyName = currentCurrency.getCurrencyName();
-                String currencyID = "("+currentCurrency.getCurrencyID()+")";
-                String btcRate = currentCurrency.getBtcRate();
-                String ethRate = currentCurrency.getEthRate();
-
-
-
-
-                currencyNameTextView.setText(currencyName);
-                currencyIDTextView.setText(currencyID);
-                currencyBTCTextView.setText(btcRate);
-                currencyETHTextView.setText(ethRate);
-
+            }else {
+                listItemView = convertView;
             }
 
 
+        TextView currencyNameTextView = (TextView) listItemView.findViewById(R.id.currency_name);
+        TextView currencyIDTextView = (TextView) listItemView.findViewById(R.id.currency_id);
+        TextView currencyBTCTextView = (TextView) listItemView.findViewById(R.id.btc_rate);
+        TextView currencyETHTextView = (TextView) listItemView.findViewById(R.id.eth_rate);
+
+        final MyCurrency currentCurrency = (MyCurrency) getItem(position);
+
+        String currencyName = currentCurrency.getCurrencyName();
+        String currencyID = "("+currentCurrency.getCurrencyID()+")";
+        String btcRate = currentCurrency.getBtcRate();
+        String ethRate = currentCurrency.getEthRate();
+
+
+
+
+        currencyNameTextView.setText(currencyName);
+        currencyIDTextView.setText(currencyID);
+        currencyBTCTextView.setText(btcRate);
+        currencyETHTextView.setText(ethRate);
 
 
 

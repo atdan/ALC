@@ -33,6 +33,14 @@
     <!--android:layout_gravity="center"-->
     <!--android:text="Convert"-->
     <!--/>-->
+    <TextView
+        android:id="@+id/currency_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:layout_gravity="center"
+        android:text="NAIRA"
+        android:padding="8dp"/>
     <RelativeLayout
         android:padding="8dp"
         android:id="@+id/btc_relative_layout"

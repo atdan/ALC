@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ConvertActivity" />
-        <activity android:name=".CurrencyActivity" />
+        <!--<activity android:name=".CurrencyActivity" />-->
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>

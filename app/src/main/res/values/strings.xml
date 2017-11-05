@@ -13,7 +13,9 @@
     <string name="ethereum">Ethereum</string>
     <string name="convert_amount">How much do you want to convert?</string>
     <string name="message">What do want to convert?</string>
+    <string name="refresh">Refresh</string>
     <string-array name="currency_code">
+        <item>NGN</item>
         <item>TRY</item>
         <item>SEK</item>
         <item>MTL</item>
@@ -21,7 +23,6 @@
         <item>KHR</item>
         <item>USD</item>
         <item>EUR</item>
-        <item>NGN</item>
         <item>MXN</item>
         <item>COP</item>
         <item>JPY</item>
@@ -38,6 +39,7 @@
     </string-array>
 
     <string-array name="currency_name">
+        <item>Nigeria, Naira</item>
         <item>Turkey, New Lira</item>
         <item>Sweden, Kronor</item>
         <item>Malta, Liri</item>
@@ -45,7 +47,7 @@
         <item>Cambodia, Riels</item>
         <item>US, Dollars</item>
         <item>Euro</item>
-        <item>Naira</item>
+
         <item>Mexico, Pesos</item>
         <item>Colombia, Pesos</item>
         <item>Japan, Yen</item>
@@ -54,7 +56,7 @@
         <item>China, Yuan Renminbi</item>
         <item>Brazil, Reais</item>
         <item>Canada, Dollars</item>
-        <item>SA, Rand</item>
+        <item>South Africa, Rand</item>
         <item>Russia, Rubles</item>
         <item>Egypt, Pounds</item>
         <item>India, Rupees</item>
