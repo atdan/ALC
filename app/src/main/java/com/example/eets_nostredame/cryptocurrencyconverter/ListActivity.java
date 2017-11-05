@@ -43,31 +43,33 @@ public class ListActivity extends AppCompatActivity {
 
         Resources resources = getResources();
         ArrayAdapter arrayAdapter = new ArrayAdapter(this,R.layout.support_simple_spinner_dropdown_item,
-                resources.getStringArray(R.array.currency_name));
+                resources.getStringArray(R.array.currency_code));
         spinner.setAdapter(arrayAdapter);
 
         final HashMap<String, String> currencyMap = new HashMap<>();
-        for(int i =0;i < resources.getStringArray(R.array.currency_name).length;i++){
-            currencyMap.put(resources.getStringArray(R.array.currency_name)[i],resources.getStringArray(R.array.currency_code)[i]);
+        for(int i =0;i < resources.getStringArray(R.array.currency_code).length;i++){
+//            currencyMap.put(resources.getStringArray(R.array.currency_name)[i],resources.getStringArray(R.array.currency_code)[i]);
             if(selectedCountries.contains(resources.getStringArray(R.array.currency_code)[i]+" ")){
- //               list.add(currencyMap.);
+                if(!resources.getStringArray(R.array.currency_code)[i].equals("NGN")) {
+                    list.add(resources.getStringArray(R.array.currency_code)[i]);
+                }
             }
         }
         listView.setAdapter(listadapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String key = spinner.getItemAtPosition(i).toString();
-                String s = currencyMap.get(key)+ " ";
+                String s = spinner.getItemAtPosition(i).toString() + " ";
+//                String s = currencyMap.get(key)+ " ";
                 if(!selectedCountries.contains(s)){
                     selectedCountries+= s;
                     editor.putString(SELECTED_CURRENCIES_KEY,selectedCountries);
+                    editor.apply();
                 }
                 if (!list.contains(s)){
                     list.add(s);
                     listadapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override
@@ -78,6 +80,13 @@ public class ListActivity extends AppCompatActivity {
 
 
         Savedpreferences(list);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
     public void Savedpreferences(ArrayList<String> list) {
 

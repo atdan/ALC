@@ -5,6 +5,7 @@ package com.example.eets_nostredame.cryptocurrencyconverter;
  */
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -24,25 +25,29 @@ import static android.content.ContentValues.TAG;
  */
 
 public class CurrencyAdapter extends ArrayAdapter {
+    Context context;
+    String selectedCountries;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     public CurrencyAdapter(@NonNull Context context, @NonNull List objects) {
         super(context, 0, objects);
+        this.context = context;
+        sharedPreferences = this.context.getSharedPreferences("currency", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItemView;
-
-            if (convertView == null){
-                listItemView = LayoutInflater
-                        .from(getContext())
-                        .inflate(R.layout.card_item, parent,false);
-
-
-            }else {
-                listItemView = convertView;
-            }
-
+        if (convertView == null){
+            listItemView = LayoutInflater
+                    .from(getContext())
+                    .inflate(R.layout.card_item, parent,false);
+        }else {
+            listItemView = convertView;
+        }
+        selectedCountries = sharedPreferences.getString(ListActivity.SELECTED_CURRENCIES_KEY,"");
 
         TextView currencyNameTextView = (TextView) listItemView.findViewById(R.id.currency_name);
         TextView currencyIDTextView = (TextView) listItemView.findViewById(R.id.currency_id);
@@ -56,13 +61,14 @@ public class CurrencyAdapter extends ArrayAdapter {
         String btcRate = currentCurrency.getBtcRate();
         String ethRate = currentCurrency.getEthRate();
 
-
-
-
         currencyNameTextView.setText(currencyName);
         currencyIDTextView.setText(currencyID);
         currencyBTCTextView.setText(btcRate);
         currencyETHTextView.setText(ethRate);
+
+
+
+
 
 
 
