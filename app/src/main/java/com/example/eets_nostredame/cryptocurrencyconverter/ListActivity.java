@@ -50,7 +50,7 @@ public class ListActivity extends AppCompatActivity {
         for(int i =0;i < resources.getStringArray(R.array.currency_name).length;i++){
             currencyMap.put(resources.getStringArray(R.array.currency_name)[i],resources.getStringArray(R.array.currency_code)[i]);
             if(selectedCountries.contains(resources.getStringArray(R.array.currency_code)[i]+" ")){
-                list.add(currencyMap.);
+ //               list.add(currencyMap.);
             }
         }
         listView.setAdapter(listadapter);
