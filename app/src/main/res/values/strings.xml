@@ -14,6 +14,7 @@
     <string name="convert_amount">How much do you want to convert?</string>
     <string name="message">What do want to convert?</string>
     <string name="refresh">Refresh</string>
+    <string name="list_of_currencies_selected">LIST OF CURRENCIES SELECTED</string>
     <string-array name="currency_code">
         <item>NGN</item>
         <item>TRY</item>
